@@ -1,4 +1,4 @@
-defmodule Chapter7 do
+defmodule Ch7 do
   def map([], _) do
     []
   end

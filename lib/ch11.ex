@@ -1,4 +1,4 @@
-defmodule MyString do
+defmodule Ch11 do
   
   #StringsAndBinaries-1
   def printable(list), do: Enum.all?(list, &_printable/1) 

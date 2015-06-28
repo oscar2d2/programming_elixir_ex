@@ -1,5 +1,5 @@
+defmodule Ch6 do
 #Exercise: ModulesAndFunctions-6
-defmodule ModulesAndFunctions do
   defmodule Chop do
     def guess(actual, low..high) do
       mid = div(low + high, 2)
