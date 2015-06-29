@@ -1,5 +1,6 @@
 defmodule Ch11 do
-  
+  import Ch7 
+
   #StringsAndBinaries-1
   def printable(list), do: Enum.all?(list, &_printable/1) 
   defp _printable(c) when c >= ?\s and c <= ?~, do: true
@@ -49,5 +50,32 @@ defmodule Ch11 do
     |> Enum.map(&String.capitalize/1)
     |> Enum.join(". ")
   end
+
+  #StringsAndBinaries-7
+  defp _f([id, ship_to, net_amount]) do
+    [String.to_integer(id), String.to_atom(String.lstrip(ship_to, ?:)), String.to_float(net_amount)]
+  end
+  def f(tax_rates) do
+    {:ok, file} = File.open("test/orders.csv")
+    
+    keywords = IO.read(file, :line) 
+               |> String.strip
+               |> String.split(",")    
+               |> Enum.map(&String.to_atom(&1)) 
+
+    value = IO.stream(file, :line) 
+            |> Enum.to_list 
+            |> Enum.map(fn x -> x 
+                                |> String.strip 
+                                |> String.split(",") 
+                                |> _f()
+                        end)
+    File.close(file)
+
+    orders = Enum.map value, &Enum.zip(keywords, &1)
+
+    Ch7.calc_total_amount(tax_rates, orders)
+  end
+
 end
 

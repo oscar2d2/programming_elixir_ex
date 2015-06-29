@@ -20,5 +20,5 @@ defmodule Ch6 do
     end
   end
 
-  Chop.guess(273, 1..1000)
+  #  Chop.guess(273, 1..1000)
 end
