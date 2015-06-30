@@ -13,4 +13,8 @@ defmodule Ch12 do
       end
     end
   end
+
+  #ControlFlow3
+  def ok!({:ok, data}), do: data
+  def ok!({_, msg}), do: raise "Not ok. #{msg}"
 end
